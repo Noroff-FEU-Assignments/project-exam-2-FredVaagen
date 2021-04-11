@@ -46,9 +46,11 @@ function Establishment({establishment}) {
       <h1 className="mt-5 mb-5">{establishment.name} Enquiry </h1>
       <Form  onSubmit={handleSubmit(onSubmit)}>
         <Row>
-          <Col >
-          <Form.Label>Check in</Form.Label>
+          
+     
         <Form.Group>
+        <Form.Label className="ml-3">Check in</Form.Label>
+        <Col>
           <Controller
             control={control}
             name="startDate"
@@ -61,9 +63,13 @@ function Establishment({establishment}) {
               />
             )}
           />
+          </Col>
+         
           </Form.Group>
-          <Form.Label>Check Out</Form.Label>
           <Form.Group >
+          <Form.Label className="ml-3">Check Out</Form.Label>
+          <Col>
+     
           <Controller
             control={control}
             name="endDate"
@@ -76,7 +82,8 @@ function Establishment({establishment}) {
               /> 
             )}
           />
-             {errors.field && <div className="alert alert-danger">Required field</div>}
+            
+          </Col>
         </Form.Group>
         {checkInDate && checkOutDate && (
         <div className="summary">
@@ -86,7 +93,7 @@ function Establishment({establishment}) {
           </p>
         </div>
       )}
-        </Col>
+      
         </Row>
         <Row>
           <Col>
@@ -117,10 +124,10 @@ function Establishment({establishment}) {
           <Form.Label>Your message</Form.Label>
           <Form.Control  name="message" as="textarea" rows={3} placeholder="Your message" {...register("message")}/>
         </Form.Group>
-        <Button type="submit" >Submit</Button>
+        <Button className="button" type="submit" >Submit</Button>
       </Form>
 
-    <style jsx>
+    <style global jsx>
     {`
           .summary p {
             font-weight: bold;
@@ -131,6 +138,18 @@ function Establishment({establishment}) {
           .react-datepicker__input-container {
             margin-right: 3rem;
           }
+
+          .button {
+            background: none;
+            color: black;
+            border: 1px solid black;
+          }
+
+          .button:hover {
+            background: black;
+            color: white;
+          }
+  
     `}
     </style>
   </Container>

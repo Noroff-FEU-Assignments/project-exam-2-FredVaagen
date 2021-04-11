@@ -27,14 +27,13 @@ const Layout = (props) => {
           <Link href="/establishments" passHref><Nav.Link className="establishments-link">Places to stay</Nav.Link></Link>
           <Link href="/contact" passHref><Nav.Link>Explore the city</Nav.Link></Link>
           <Link href="/contact" passHref><Nav.Link>Contact us</Nav.Link></Link>
-         
           </Nav>
           <Nav className="mr login">
             <Nav.Item>
              {user ? (
                <Link href="/admin">
                  <a className="mr-3">
-                   Admin
+                   
                  </a>
                </Link>
              ) : (
@@ -110,6 +109,12 @@ const Layout = (props) => {
         background: black;
         z-index: 5;
       }
+
+      .navbar-light .navbar-nav .nav-link {
+        margin-right: 2rem;     
+        margin-left: 2rem;      
+      }
+
 
       .navbar-toggler {
         color: red !important;

@@ -63,9 +63,7 @@ export default function Home ({establishments}) {
       
 
           .navbar-light .navbar-nav .nav-link {
-            
-            margin: 2rem;
-            
+            margin: 2rem;       
         }
 
           h1 {

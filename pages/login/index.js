@@ -74,9 +74,7 @@ function Login() {
                   </Form.Group>
 
                   <Form.Group>
-                    <Button
-                      style={{ float: "right", width: 120 }}
-                      color="primary"
+                    <Button className="button"
                       onClick={() => {
                         setLoading(true);
                         login(data.identifier, data.password)
@@ -91,7 +89,7 @@ function Login() {
                           });
                       }}
                     >
-                      {loading ? "Loading... " : "Submit"}
+                      {loading ? "Loading... " : "Log in"}
                     </Button>
                   </Form.Group>
                 </fieldset>
@@ -100,7 +98,7 @@ function Login() {
           </div>
         </Col>
       </Row>
-      <style jsx>
+      <style global jsx>
         {`
           .paper {
             border: 1px solid lightgray;
@@ -112,8 +110,6 @@ function Login() {
             display: flex;
             flex-direction: column;
             margin-bottom: 5rem;
-          
-           
           }
           .notification {
             color: #ab003c;
@@ -121,7 +117,7 @@ function Login() {
           .header {
             width: 100%;
             padding: 2rem;
-            background-color: #2196f3;
+            background-color: black;
             margin-bottom: 30px;
             border-radius-top: 6px;
             display: flex;
@@ -132,11 +128,16 @@ function Login() {
           .wrapper {
             padding: 10px 30px 20px 30px !important;
           }
-          a {
-            color: blue !important;
-          }
-          img {
-            margin: 15px 30px 10px 50px;
+          .button {
+            width: 100%;
+            background: none;
+            color: black;
+            border: 1px solid black;
+          } 
+
+          .button:hover {
+            background: black;
+            color: white;
           }
         `}
       </style>

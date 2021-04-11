@@ -16,13 +16,15 @@ const Admin = ({enquiries, contacts}) => {
 		<Container fluid className="p-0">
 			<Tabs defaultActiveKey="enquiries" >
 				<Tab eventKey="enquiries" title="Enquiries">
+					<Container>	<h1>Enquiries</h1></Container>
 					{enquiries.map(enquiry => (
 						<Container key={enquiry.id} className="establishment-container" >
+							
 							<Row className="establishment-specific">
-								<Col xs={12} md={9}>
-									<h3>{enquiry.firstname} {enquiry.lastname}</h3>
-									<p>{enquiry.establishmentName}</p>
-									<p>{enquiry.email}</p>
+								<Col xs={12} md={9} className="mt-5">
+									<p>Name: {enquiry.firstname} {enquiry.lastname}</p>
+									<p>Establishment: {enquiry.establishmentName}</p>
+									<p>Email: {enquiry.email}</p>
 									<p>Check in: {enquiry.startDate}</p>
 									<p>Check out: {enquiry.endDate}</p>
 								</Col>
@@ -32,12 +34,17 @@ const Admin = ({enquiries, contacts}) => {
 				</Tab>
 
 				<Tab eventKey="contact" title="Contact">
+				<Container>	<h1>Contact messages</h1></Container>
 					{contacts.map(contact => (
-						<div key={contact.id}>
-							<p>{contact.firstname} {contact.lastname}</p>
-							<p>{contact.email}</p>
-							<p>{contact.message}</p>
-						</div>
+						<Container key={contact.id} className="establishment-container" >
+						<Row className="establishment-specific">
+							<Col xs={12} md={9} className="mt-5">
+								<p>Name: {contact.firstname} {contact.lastname}</p>
+								<p>Email: {contact.email}</p>
+								<p>Message: {contact.message}</p>
+							</Col>
+						</Row>
+				</Container>
 					))}	
 				</Tab>
 
