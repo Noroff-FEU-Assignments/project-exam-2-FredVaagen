@@ -8,17 +8,23 @@ import { BASE_URL } from '../../constants/api'
 
 const Admin = ({enquiries, contacts}) => {
 
+	if (enquiries || contacts == 0) {
+		console.log("Empty enquiries", "empty contacts")	
+	} 
+
 	return (
 		<Container fluid className="p-0">
 			<Tabs defaultActiveKey="enquiries" >
 				<Tab eventKey="enquiries" title="Enquiries">
 					{enquiries.map(enquiry => (
-						<Container className="establishment-container" >
+						<Container key={enquiry.id} className="establishment-container" >
 							<Row className="establishment-specific">
 								<Col xs={12} md={9}>
-									<h3>{enquiry.firstname}</h3>
-									<p></p>
-									<p className="price">NOK,- per night </p>
+									<h3>{enquiry.firstname} {enquiry.lastname}</h3>
+									<p>{enquiry.establishmentName}</p>
+									<p>{enquiry.email}</p>
+									<p>Check in: {enquiry.startDate}</p>
+									<p>Check out: {enquiry.endDate}</p>
 								</Col>
 							</Row>
 					</Container>
@@ -42,7 +48,8 @@ const Admin = ({enquiries, contacts}) => {
 			<style global jsx >
 			{`
 				.main {
-					height: 100vh;
+					height: auto;
+					min-height: 100vh;
 				}
 					
 			.nav-tabs {

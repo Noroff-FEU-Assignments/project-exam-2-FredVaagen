@@ -57,7 +57,7 @@ function Establishment({establishment}) {
 
         <Row>
           <Col >
-          <Form.Label>Check in and check out dates</Form.Label>
+          <Form.Label>Check in</Form.Label>
         <Form.Group>
           <Controller
             control={control}
@@ -66,15 +66,18 @@ function Establishment({establishment}) {
               <DatePicker
                 selected={checkInDate}
                 onChange={handleCheckInDate}
-               
               />
             )}
           />
+          </Form.Group>
+          
+          <Form.Label>Check Out</Form.Label>
+          <Form.Group >
           <Controller
             control={control}
             name="endDate"
             render={() => (
-              <DatePicker
+              <DatePicker 
                 selected={checkOutDate}
                 minDate={checkInDate}
                 onChange={handleCheckOutDate}
@@ -83,11 +86,10 @@ function Establishment({establishment}) {
           />
 
         </Form.Group>
-
         {checkInDate && checkOutDate && (
         <div className="summary">
           <p>
-            You want to book {establishment.name} from {moment(checkInDate).format("LL")} to{" "}
+            You are booking {establishment.name} from {moment(checkInDate).format("LL")} to{" "}
             {moment(checkOutDate).format("LL")}.
           </p>
         </div>
@@ -123,7 +125,15 @@ function Establishment({establishment}) {
 
     <style jsx>
     {`
+          .summary p {
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+          }
 
+          .react-datepicker__input-container {
+            margin-right: 3rem;
+          }
     `}
     </style>
   </Container>
