@@ -29,18 +29,15 @@ export default function Home ({establishments}) {
             <Autocomplete className="autocomplete"
               options={establishments.map(option => option.name)}
               onChange={goToEstablishment}
+              
               renderInput={params => (
+
                 <TextField 
                   {...params}
                   placeholder='Search Establishments...'
-                  margin='none'
-                  
-                  
-                  
+                
                   InputProps={{
                     ...params.InputProps,
-    
-
                     startAdornment: (
                       <InputAdornment 
                         position='start'
@@ -53,24 +50,23 @@ export default function Home ({establishments}) {
               )}
             />
         </div>
-        <style jsx>
+        <style global jsx>
         {`
           .home {
-            height:100vh;
+            height:80vh;
             background: url('/me.jpg') no-repeat;
             background-position: center;
             width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-evenly;
-            align-content: center;
-            
           }
 
           h1 {
             color: white;
-            font-size: 1REM;
+            font-size: 5rem;
             text-align: center;
+            padding: 4rem;
+          
           }
 
           h2 {
@@ -78,26 +74,37 @@ export default function Home ({establishments}) {
             font-size: 1REM; 
             text-align: center;
           }
+          
           .searchbar {
             background: white;
-            border-radius: 20px;
+            border-radius: 50px;
             border: none;  
             align-self: center;
-            width: 50%;
-            max-width: 600px;
+            width: 70%;
+            max-width: 800px;
             min-width: 200px;
-            padding: 1rem;
-
+            padding: .6rem;
+            margin-top: -1.5rem;
+            z-index: 9999;
+            
           }
 
+          .MuiInput-underline:before {
+            border-bottom: none !important;  
+        }
+        
+        
+        .MuiInput-underline:after {
+            border-bottom: none !important;  
+        }
+ 
 
+     
+
+     
         `}
       </style>
-      </div>
-   
-       
-
-        
+      </div>     
   );
 };
 

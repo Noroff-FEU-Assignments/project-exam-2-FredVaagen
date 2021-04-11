@@ -62,6 +62,7 @@ export default function Establishment({establishment}) {
               margin-top: 5%;
               height: auto;
               margin-bottom: 10rem;
+              color: black;
             }
 
             .description {
@@ -84,6 +85,11 @@ export default function Establishment({establishment}) {
               background: none;
               color: black;
               border: 1px solid black;
+            }
+
+            .button:hover {
+              background: black;
+              color: white;
             }
     
           `}  

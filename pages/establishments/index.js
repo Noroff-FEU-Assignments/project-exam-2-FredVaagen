@@ -31,8 +31,6 @@ export default function EstablishmentsPage({establishments}) {
 				
 				{`
 					.establishment-container {
-						
-						
 						font-family: 'Roboto', sans-serif;
 						font-weight: 300;
 						margin-top: 5rem;

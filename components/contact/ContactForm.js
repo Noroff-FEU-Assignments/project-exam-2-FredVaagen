@@ -7,9 +7,6 @@ import Form from 'react-bootstrap/Form'
 import  Button  from 'react-bootstrap/Button';
 import { BASE_URL } from './../../constants/api';
 import { useRouter } from "next/router";
-
-
-
 const schema = yup.object().shape({
   firstname: 
     yup

@@ -52,17 +52,13 @@ const Admin = ({enquiries, contacts}) => {
 					min-height: 100vh;
 				}
 					
-			.nav-tabs {
-				color: white; 
-				background: black;
-				display: flex;
-				justify-content: space-evenly;
-				margin-bottom: 5rem;
-			}
-
-			.nav a {
-				color: white;
-			}
+				.nav-tabs {
+					color: white; 
+					background: black;
+					display: flex;
+					justify-content: space-evenly;
+					margin-bottom: 5rem;
+				}
 			
 			`}
 		</style>
