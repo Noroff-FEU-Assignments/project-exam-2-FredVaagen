@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import { useRouter } from "next/router";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
@@ -10,9 +10,11 @@ import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Establishment({establishment}) {
+
+
   const router = useRouter();
 
-  const { register, control, handleSubmit, formState:{ errors } } = useForm()
+  const { control, handleSubmit, register, setValue, formState: { errors } } = useForm();
 
   const establishmentName = establishment.name; 
 
@@ -26,35 +28,23 @@ function Establishment({establishment}) {
   const handleCheckOutDate = (date) => {
     setCheckOutDate(date);
   };
+  const onSubmit = async (data) => {
 
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+     
+    };
+    await fetch([BASE_URL + "/enquiries"], requestOptions);
+    
+    router.push("/enquiry/feedback")
 
-  const onSubmit = async event => {
-    await fetch('http://localhost:1337/enquiries', {
-      body: JSON.stringify({
-        firstname: event.target.firstname.value,
-        lastname: event.target.lastname.value,
-        establishmentName: establishmentName,
-        message:event.target.message.value,
-        email: event.target.email.value,
-        startDate: checkInDate,
-        endDate: checkOutDate,
-       
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST'
-    })
-        router.push("/enquiry/feedback") 
-  }
-
-
-
+} 
   return (
     <Container>
       <h1 className="mt-5 mb-5">{establishment.name} Enquiry </h1>
-      <Form  onSubmit={onSubmit}>
-
+      <Form  onSubmit={handleSubmit(onSubmit)}>
         <Row>
           <Col >
           <Form.Label>Check in</Form.Label>
@@ -62,29 +52,31 @@ function Establishment({establishment}) {
           <Controller
             control={control}
             name="startDate"
-            render={({}) => (
+            render={({field}) => (
               <DatePicker
                 selected={checkInDate}
-                onChange={handleCheckInDate}
+                onChange={(e) => field.onChange(e)}
+                minDate={(new Date())}
+                selected={field.value}
               />
             )}
           />
           </Form.Group>
-          
           <Form.Label>Check Out</Form.Label>
           <Form.Group >
           <Controller
             control={control}
             name="endDate"
-            render={() => (
+            render={({field}) => (
               <DatePicker 
-                selected={checkOutDate}
+                selected={field.value}
                 minDate={checkInDate}
-                onChange={handleCheckOutDate}
-              />
+                value={handleCheckOutDate}
+                onChange={(e) => field.onChange(e)}
+              /> 
             )}
           />
-
+             {errors.field && <div className="alert alert-danger">Required field</div>}
         </Form.Group>
         {checkInDate && checkOutDate && (
         <div className="summary">
@@ -100,25 +92,30 @@ function Establishment({establishment}) {
           <Col>
             <Form.Group controlId="firstname">
               <Form.Label>First name</Form.Label>
-              <Form.Control name="firstname" as="input" rows={3} placeholder="Enter first name" required/>
+              <Form.Control name="firstname" as="input" rows={3} placeholder="Enter first name"
+              aria-invalid={errors.firstname ? "true" : "false"}
+              {...register('firstname', { required: true })}/>
+               {errors.firstname && <div className="alert alert-danger">Required field</div>}
             </Form.Group>
         </Col>
         
           <Col>
             <Form.Group controlId="lastname">
               <Form.Label>Last name</Form.Label>
-              <Form.Control name="lastname" as="input" rows={3} placeholder="Enter last name" required/>
+              <Form.Control name="lastname" as="input" rows={3} placeholder="Enter last name" {...register("lastname", { required: true })}/>
+              {errors.lastname && <div className="alert alert-danger">Required field</div>}
             </Form.Group>
           </Col>
         </Row>
         <Form.Group controlId="ControlEmailInput">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" name="email" as="input" rows={3} placeholder="Enter email" required/>
+          <Form.Control type="email" name="email" as="input" rows={3} placeholder="Enter email" {...register("email", { required: true })}/>
+          {errors.email && <div className="alert alert-danger">Required field</div>}
         </Form.Group>
 
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Your message</Form.Label>
-          <Form.Control  name="message" as="textarea" rows={3} placeholder="Your message"/>
+          <Form.Control  name="message" as="textarea" rows={3} placeholder="Your message" {...register("message")}/>
         </Form.Group>
         <Button type="submit" >Submit</Button>
       </Form>

@@ -4,6 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Container from 'react-bootstrap/Container'
 
 import { BASE_URL } from './../constants/api';
 
@@ -24,18 +25,15 @@ export default function Home ({establishments}) {
   };
 
   return (
-    <div className="home">
+    <Container fluid className="home">
         <div className="searchbar">
             <Autocomplete className="autocomplete"
               options={establishments.map(option => option.name)}
               onChange={goToEstablishment}
-              
               renderInput={params => (
-
                 <TextField 
                   {...params}
                   placeholder='Search Establishments...'
-                
                   InputProps={{
                     ...params.InputProps,
                     startAdornment: (
@@ -59,7 +57,16 @@ export default function Home ({establishments}) {
             width: 100%;
             display: flex;
             flex-direction: column;
+            padding: 0;
           }
+
+      
+
+          .navbar-light .navbar-nav .nav-link {
+            
+            margin: 2rem;
+            
+        }
 
           h1 {
             color: white;
@@ -80,7 +87,7 @@ export default function Home ({establishments}) {
             border-radius: 50px;
             border: none;  
             align-self: center;
-            width: 70%;
+            width: 100%;
             max-width: 800px;
             min-width: 200px;
             padding: .6rem;
@@ -98,18 +105,13 @@ export default function Home ({establishments}) {
             border-bottom: none !important;  
         }
 
-        @media only screen and (max-width: 800px){
+        @media only screen and (max-width: 750px){
           .searchbar {
-            background: white;
-            border-radius: 0;
-            border: none;  
-            align-self: center;
-            width: 100%;
-            max-width: 800px;
-            min-width: 200px;
-            padding: .6rem;
             border-radius: 0;
             z-index: 1;
+            width: 100%;
+            margin: 0;
+            
           }
 
           #basic-navbar-nav {
@@ -127,7 +129,7 @@ export default function Home ({establishments}) {
   }
   `}
       </style>
-      </div>     
+      </Container>     
   );
 };
 

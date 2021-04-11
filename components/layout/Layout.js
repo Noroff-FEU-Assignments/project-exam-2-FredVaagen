@@ -96,7 +96,7 @@ const Layout = (props) => {
 
           .navbar-light .navbar-nav .nav-link {
             color: white;
-            margin: 2rem;
+            
         }
         .navbar-light:hover .navbar-nav:hover .nav-link:hover {
             color: white;    
@@ -140,6 +140,9 @@ const Layout = (props) => {
           padding: 1rem;
           margin-left: -10px;
           margin-top: 2rem;
+        }
+
+
         }
 
       }

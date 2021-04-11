@@ -2,12 +2,12 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import Link from 'next/link'
-import { BASE_URL } from '../../constants/api';
+import { BASE_URL } from './../../constants/api';
 import Image from 'next/image'
 
 export default function EstablishmentsPage({establishments}) {
     return (
-		<Container fluid className="establishments">
+		<div className="establishments">
 			{establishments.map(establishment => (	
 
 				<Link href="/establishments/[name]" as={`/establishments/${establishment.name}`} key={establishment.id}>
@@ -31,6 +31,8 @@ export default function EstablishmentsPage({establishments}) {
 				
 				{`
 					.establishment-container {
+						
+						
 						font-family: 'Roboto', sans-serif;
 						font-weight: 300;
 						margin-top: 5rem;
@@ -69,7 +71,7 @@ export default function EstablishmentsPage({establishments}) {
 					@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
         	`}
 			</style>
-		</Container>
+		</div>
     )
 }
 

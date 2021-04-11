@@ -5,7 +5,7 @@ function feedback() {
 
   return (
     <div className="contact">
-      <h1 className="headline">THANK YOU FOR YOUR FEEDBACK.</h1> 
+      <h1 className="headline">THANK YOU FOR BOOKING WITH HOLIDAZE.</h1> 
       <style jsx>
     {`
       .contact {
