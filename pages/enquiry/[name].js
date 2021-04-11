@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import React, { useState} from "react";
+import { useRouter } from "next/router";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import { Container, Form, Button, Col, Row} from "react-bootstrap";
@@ -9,6 +10,8 @@ import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Establishment({establishment}) {
+  const router = useRouter();
+
   const { register, control, handleSubmit, formState:{ errors } } = useForm()
 
   const establishmentName = establishment.name; 
@@ -42,15 +45,7 @@ function Establishment({establishment}) {
       },
       method: 'POST'
     })
-    .then(function(response) {
-      if (response.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-      return response.json();
-    })
-    .then(function(data) {
-      console.log(data);
-    });
+        router.push("/enquiry/feedback") 
   }
 
 

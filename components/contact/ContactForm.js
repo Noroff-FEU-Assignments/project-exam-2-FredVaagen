@@ -59,7 +59,7 @@ export default function ContactForm () {
       const response = await fetch([BASE_URL + "/contacts"], requestOptions);
 
       if (response) {
-        router.push("/contact/formfeedback") 
+        router.push("/contact/feedback") 
       }
 
   }
