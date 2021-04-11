@@ -16,7 +16,7 @@ export default function EstablishmentsPage({establishments}) {
 							<Col xs={12} md={3}>
 								<Image src={establishment.promoteImage.url} width="auto" height="auto" />
 							</Col>	
-							<Col xs={12} md={9}>
+							<Col  xs={12} md={9}>
 								<h3>{ establishment.name }</h3>
 								<p>{establishment.description}</p>
 								<p className="price">NOK {establishment.price},- per night </p>
@@ -36,7 +36,7 @@ export default function EstablishmentsPage({establishments}) {
 						font-family: 'Roboto', sans-serif;
 						font-weight: 300;
 						margin-top: 5rem;
-						transition: .3s;
+						transition: .5s;
 						margin-bottom: 100px;
 					}
 

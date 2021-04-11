@@ -4,7 +4,7 @@ import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 
 export default function Footer() {
   return (
-    <MDBFooter  style={{ backgroundColor: '#F8F8F8' }} className='text-center text-lg-left ' >
+    <MDBFooter className='text-center text-lg-left footer-main ' >
       <MDBContainer className='p-4 mt-5'>
         <MDBRow>
           <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
@@ -123,14 +123,18 @@ export default function Footer() {
         <a className='text-dark' href='https://mdbootstrap.com/'>
         Personvern
         </a>
-        <a>Vilkår
+        <a className='text-dark'>Vilkår
         </a>
-        <a>
+        <a className='text-dark'>
         Firmaopplysninger
         </a>
       </div>
       <style jsx global>{`
           
+
+          .footer-main {
+            border-top: 1px solid #E9E9E9;
+          }
 
           .bottom-footer {
             font-size: 14px;

@@ -7,6 +7,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Container from 'react-bootstrap/Container'
 
 import { BASE_URL } from './../constants/api';
+import Something from '../components/home/Something';
 
 export default function Home ({establishments}) {
 
@@ -25,6 +26,7 @@ export default function Home ({establishments}) {
   };
 
   return (
+    <>
     <Container fluid className="home">
         <div className="searchbar">
             <Autocomplete className="autocomplete"
@@ -48,6 +50,7 @@ export default function Home ({establishments}) {
               )}
             />
         </div>
+   
         <style global jsx>
         {`
           .home {
@@ -59,9 +62,6 @@ export default function Home ({establishments}) {
             flex-direction: column;
             padding: 0;
           }
-
-      
-
           .navbar-light .navbar-nav .nav-link {
             margin: 2rem;       
         }
@@ -127,7 +127,13 @@ export default function Home ({establishments}) {
   }
   `}
       </style>
-      </Container>     
+      </Container>   
+      <Container>
+          <Something />
+        </Container> 
+      </> 
+
+        
   );
 };
 
