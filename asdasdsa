@@ -1,0 +1,48 @@
+import EnquiryFeedback from "../components/admin/enquiries/EnquiryFeedback"
+import { parseCookies  } from 'nookies'
+import { BASE_URL } from '../constants/api'
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
+
+const Admin = (enquiries, contact,) => {
+
+	return (
+		<Tabs defaultActiveKey="enquiries" id="admintab" className="mr-auto">
+		<Tab eventKey="enquiries" title="Enquiries">
+			<EnquiryFeedback {...enquiries} />
+		</Tab>
+		<Tab eventKey="contact" title="Contact">
+			<h1>Contact</h1>
+		</Tab>
+		<Tab eventKey="createEstablishment" title="Create new establishment">
+		<h1>Create new establishment</h1>
+		</Tab>
+		</Tabs>
+	);
+  };
+
+
+
+  export async function getServerSideProps(ctx) {
+    const token = parseCookies(ctx).token
+
+	console.log(token);
+
+    const res = await fetch(`${BASE_URL}/enquiries`, {
+		headers: {
+			Authorization: `Bearer ${token}`
+		}
+    })
+    	const enquiries = await res.json()
+
+	return {
+		props: {
+            enquiries: enquiries
+		},
+	};
+}
+
+export default Admin;
+
+
+//	
