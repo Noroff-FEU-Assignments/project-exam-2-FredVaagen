@@ -19,17 +19,17 @@ const Layout = (props) => {
           <meta charSet="utf-8" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
-        <Navbar expand="lg">
+        <Navbar expand="md">
         <Navbar.Brand href="/">Holidaze</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="m-auto">
-          <Link href="/establishments" passHref><Nav.Link>Places to stay</Nav.Link></Link>
+          <Link href="/establishments" passHref><Nav.Link className="establishments-link">Places to stay</Nav.Link></Link>
           <Link href="/contact" passHref><Nav.Link>Explore the city</Nav.Link></Link>
           <Link href="/contact" passHref><Nav.Link>Contact us</Nav.Link></Link>
          
           </Nav>
-          <Nav className="mr">
+          <Nav className="mr login">
             <Nav.Item>
              {user ? (
                <Link href="/admin">
@@ -41,7 +41,7 @@ const Layout = (props) => {
               <></>
              )}
             </Nav.Item>
-            <Nav.Item>
+            <Nav.Item className="login-link">
               {user ? (
                 <Link href="/">
                   <a
@@ -73,9 +73,6 @@ const Layout = (props) => {
           font-weight: 300;
           
           }
-
-
-
           .navbar {
             background: black;
             height: 90px;
@@ -108,6 +105,48 @@ const Layout = (props) => {
         .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
           color: white !important;
       }
+
+      .navbar-collapse collapse show {
+        background: black;
+        z-index: 5;
+      }
+
+      .navbar-toggler {
+        color: red !important;
+        background: white !important;
+        margin-bottom: 10px;
+        font-size: 1rem;
+      }
+
+      #basic-navbar-nav {
+        background: black;
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+        z-index: 3;
+        
+        
+      }
+
+      #basic-navbar-nav a {
+        margin-top: 1px;
+        z-index: 1;
+        
+      }
+
+      @media only screen and (max-width: 800px){
+
+        .login-link {
+          padding: 1rem;
+          margin-left: -10px;
+          margin-top: 2rem;
+        }
+
+      }
+
+  
+
+    
     
       `}
     </style>

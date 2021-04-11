@@ -85,7 +85,7 @@ export default function Home ({establishments}) {
             min-width: 200px;
             padding: .6rem;
             margin-top: -1.5rem;
-            z-index: 9999;
+            z-index: 4;
             
           }
 
@@ -97,12 +97,35 @@ export default function Home ({establishments}) {
         .MuiInput-underline:after {
             border-bottom: none !important;  
         }
- 
 
-     
+        @media only screen and (max-width: 800px){
+          .searchbar {
+            background: white;
+            border-radius: 0;
+            border: none;  
+            align-self: center;
+            width: 100%;
+            max-width: 800px;
+            min-width: 200px;
+            padding: .6rem;
+            border-radius: 0;
+            z-index: 1;
+          }
 
-     
-        `}
+          #basic-navbar-nav {
+            background: black;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 0;
+            z-index: 5;
+          }
+
+          .establishments-link {
+            margin-top: 3rem;
+          }
+      }
+  }
+  `}
       </style>
       </div>     
   );

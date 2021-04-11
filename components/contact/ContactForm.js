@@ -62,7 +62,7 @@ export default function ContactForm () {
   }
 
   return (
-    <Container className="mb-5">
+    <Container className="mb-5 mt-5">
       <h1 className="mb-5">Contact us</h1>
       <Form noValidate onSubmit={handleSubmit(onSubmit)}>
         <Form.Group>

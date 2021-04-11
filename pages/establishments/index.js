@@ -2,7 +2,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import Link from 'next/link'
-import { BASE_URL } from './../../constants/api';
+import { BASE_URL } from '../../constants/api';
 import Image from 'next/image'
 
 export default function EstablishmentsPage({establishments}) {
