@@ -5,49 +5,30 @@ import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import { Container, Form, Button, Col, Row} from "react-bootstrap";
 import { BASE_URL } from '../../constants/api';
-import moment from "moment";
 
 import "react-datepicker/dist/react-datepicker.css";
 
 function Establishment({establishment}) {
-
-
   const router = useRouter();
-
-  const { control, handleSubmit, register, setValue, formState: { errors } } = useForm();
-
+  const { control, handleSubmit, register, formState: { errors } } = useForm();
+  
   const establishmentName = establishment.name; 
 
-  const [checkInDate, setCheckInDate] = useState(null);
-  const [checkOutDate, setCheckOutDate] = useState(null);
-
-  const handleCheckInDate = (date) => {
-    setCheckInDate(date);
-    setCheckOutDate(null);
-  };
-  const handleCheckOutDate = (date) => {
-    setCheckOutDate(date);
-  };
   const onSubmit = async (data) => {
-
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-     
+        body: JSON.stringify(data), 
     };
-    await fetch([BASE_URL + "/enquiries"], requestOptions);
-    
-    router.push("/enquiry/feedback")
 
+    await fetch([BASE_URL + "/enquiries"], requestOptions);
+    router.push("/enquiry/feedback")
 } 
   return (
     <Container>
       <h1 className="mt-5 mb-5">{establishment.name} Enquiry </h1>
       <Form  onSubmit={handleSubmit(onSubmit)}>
         <Row>
-          
-     
         <Form.Group>
         <Form.Label className="ml-3">Check in</Form.Label>
         <Col>
@@ -56,7 +37,6 @@ function Establishment({establishment}) {
             name="startDate"
             render={({field}) => (
               <DatePicker
-                selected={checkInDate}
                 onChange={(e) => field.onChange(e)}
                 minDate={(new Date())}
                 selected={field.value}
@@ -64,36 +44,23 @@ function Establishment({establishment}) {
             )}
           />
           </Col>
-         
           </Form.Group>
           <Form.Group >
           <Form.Label className="ml-3">Check Out</Form.Label>
           <Col>
-     
           <Controller
             control={control}
             name="endDate"
             render={({field}) => (
               <DatePicker 
                 selected={field.value}
-                minDate={checkInDate}
-                value={handleCheckOutDate}
+                minDate={(new Date())}
                 onChange={(e) => field.onChange(e)}
               /> 
             )}
           />
-            
           </Col>
         </Form.Group>
-        {checkInDate && checkOutDate && (
-        <div className="summary">
-          <p>
-            You are booking {establishment.name} from {moment(checkInDate).format("LL")} to{" "}
-            {moment(checkOutDate).format("LL")}.
-          </p>
-        </div>
-      )}
-      
         </Row>
         <Row>
           <Col>
@@ -105,7 +72,6 @@ function Establishment({establishment}) {
                {errors.firstname && <div className="alert alert-danger">Required field</div>}
             </Form.Group>
         </Col>
-        
           <Col>
             <Form.Group controlId="lastname">
               <Form.Label>Last name</Form.Label>
@@ -119,16 +85,15 @@ function Establishment({establishment}) {
           <Form.Control type="email" name="email" as="input" rows={3} placeholder="Enter email" {...register("email", { required: true })}/>
           {errors.email && <div className="alert alert-danger">Required field</div>}
         </Form.Group>
-
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Your message</Form.Label>
           <Form.Control  name="message" as="textarea" rows={3} placeholder="Your message" {...register("message")}/>
         </Form.Group>
         <Button className="button" type="submit" >Submit</Button>
+        <Form.Control hidden value={establishmentName} {...register("establishmentName")}/>
       </Form>
-
     <style global jsx>
-    {`
+      {`
           .summary p {
             font-weight: bold;
             margin-top: 2rem;
@@ -144,12 +109,6 @@ function Establishment({establishment}) {
             color: black;
             border: 1px solid black;
           }
-
-          .button:hover {
-            background: black;
-            color: white;
-          }
-  
     `}
     </style>
   </Container>
@@ -168,7 +127,6 @@ export async function getStaticProps({params: {name}}) {
   }
   
   export async function getStaticPaths() {
-
       const establishments_res = await fetch(`${BASE_URL}/establishments`)
       const establishments = await establishments_res.json()
       return {
