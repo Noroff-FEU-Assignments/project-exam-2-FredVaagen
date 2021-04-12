@@ -64,6 +64,8 @@ const Layout = (props) => {
         </Navbar.Collapse>
         </Navbar>
         <style global jsx >{`
+
+       ////////////// Overriding a bunch of Bootstrap CSS for NAVIGATION and a tags /////////////////
           
           @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
 
@@ -72,6 +74,7 @@ const Layout = (props) => {
           font-weight: 300;
           
           }
+
           .navbar {
             background: black;
             height: 90px;
@@ -129,14 +132,11 @@ const Layout = (props) => {
         text-align: center;
         margin-top: 1rem;
         z-index: 3;
-        
-        
       }
 
       #basic-navbar-nav a {
         margin-top: 1px;
-        z-index: 1;
-        
+        z-index: 1;  
       }
 
       @media only screen and (max-width: 800px){
@@ -151,10 +151,6 @@ const Layout = (props) => {
         }
 
       }
-
-  
-
-    
     
       `}
     </style>

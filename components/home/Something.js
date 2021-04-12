@@ -6,10 +6,6 @@ function Something() {
             <h2 className="headline">Exploring Bergen</h2>
             <style global jsx>
         {`
-
-            .block {
-                min-height: 100vh;
-            }
             .headline {
                 color: black;
                 font-size: 30px;

@@ -20,7 +20,6 @@ export default function Home ({establishments}) {
   };
 
   const goToEstablishment = async (e, val) => {
-    
     await getEstablishmentName();
     Router.push(`/establishments/${val}`);
   };
@@ -138,7 +137,6 @@ export default function Home ({establishments}) {
 };
 
 export async function getStaticProps() {
-
 	const res = await fetch(`${BASE_URL}/establishments?_sort=name:asc`);
 	const establishments = await res.json();
 

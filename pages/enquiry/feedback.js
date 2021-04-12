@@ -1,4 +1,5 @@
 import React from 'react'
+import { BASE_URL } from '../../constants/api';
 
 
 function feedback() {
@@ -10,21 +11,14 @@ function feedback() {
     {`
       .contact {
         height: 70vh;
-      
-        
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
       }
-
       .contact h1 {
-        text-align: center;
-        
       }
 
-      .headline {
-        text-align: center;
-        margin-top: 10rem;
-       
-
-      }
     `}
     </style>
     </div>
@@ -32,3 +26,7 @@ function feedback() {
 }
 
 export default feedback;
+
+
+
+

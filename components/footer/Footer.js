@@ -116,22 +116,38 @@ export default function Footer() {
         </MDBRow>
       </MDBContainer>
 
-      <div className='d-flex justify-content-between p-3 bottom-footer ' style={{ backgroundColor: '#FFFFFF' }}>
-        &copy; {new Date().getFullYear()} Copyright:{' Holidaze, Inc'}
-        <a className='text-dark' href='https://mdbootstrap.com/'>
-        </a>
-        <a className='text-dark' href='https://mdbootstrap.com/'>
-        Personvern
-        </a>
-        <a className='text-dark'>Vilkår
+      <div className='d-flex  p-3 bottom-footer justify-content-between'>
+        <div>
+          &copy; {new Date().getFullYear()} Copyright:{' Holidaze, Inc'}
+          <a className='text-dark' href='https://mdbootstrap.com/'>
+          </a>
+          <a className='text-dark' href='https://mdbootstrap.com/'>
+          Personvern
+          </a>
+          <a className='text-dark'>Vilkår
+          </a>
+          <a className='text-dark'>
+          Firmaopplysninger
+          </a>
+        </div>
+        <div>
+        <a className='text-dark'>
+          Facebook
         </a>
         <a className='text-dark'>
-        Firmaopplysninger
+          Instagram
         </a>
+        <a className='text-dark'>
+          Twitter
+        </a>
+        <a className='text-dark'>
+          LinkedIn
+        </a>
+        </div>
       </div>
-      <style jsx global>{`
-          
 
+      
+      <style jsx global>{`
           .footer-main {
             border-top: 1px solid #E9E9E9;
           }
@@ -139,20 +155,12 @@ export default function Footer() {
           .bottom-footer {
             font-size: 14px;
             flex-wrap: wrap;
-           
-    
           }
 
- 
-
-
-          .footer {
-            margin-bottom: 5rem;
-            
+          .bottom-footer a {
+            margin-right: 1rem;
           }
-      
-
-
+        
         `}</style>
     </MDBFooter>
   );

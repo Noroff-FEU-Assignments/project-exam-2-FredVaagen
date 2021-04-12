@@ -1,17 +1,12 @@
 import React from "react";
 import App from "next/app";
-import Layout from "../components/layout/Layout";
-import AppContext from "../context/AppContext";
 import Cookie from "js-cookie";
 import fetch from "isomorphic-unfetch";
+import Layout from "../components/layout/Layout";
+import AppContext from "../context/AppContext";
+import { BASE_URL } from "../constants/api";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../styles/globals.css"
-import 'react-datepicker/dist/react-datepicker.css';
-
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
-
-
 
 class MyApp extends App {
   state = {
@@ -24,7 +19,7 @@ class MyApp extends App {
 
     if (token) {
       // authenticate the token on the server and place set user object
-      fetch(`${API_URL}/users/me`, {
+      fetch(`${BASE_URL}/users/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

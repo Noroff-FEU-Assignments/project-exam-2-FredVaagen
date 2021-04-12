@@ -8,10 +8,18 @@ import { BASE_URL } from '../../constants/api';
 import Carousel from 'react-bootstrap/Carousel'
 import Link from 'next/link'
 
+import MapSection from '../../components/establishments/maps/SimpleMap';
+import SimpleMap from '../../components/establishments/maps/SimpleMap'
+
 export default function Establishment({establishment}) {
-  
- 
- 
+  const images = establishment.images;
+
+  const location = {
+    address: '1600 Amphitheatre Parkway, Mountain View, california.',
+    lat: 37.42216,
+    lng: -122.08427,
+  } // our location object from earlier
+
   return (
     <Container className="establishment">
       <Row>
@@ -24,44 +32,40 @@ export default function Establishment({establishment}) {
                 alt="First slide"
               />
             </Carousel.Item>
-            <Carousel.Item>
-              <Image
-                className="d-block w-100"
-                src={establishment.images[0].url}
-                alt="Second slide"
-              />
-            </Carousel.Item>
-
-            <Carousel.Item>
-              <Image
-                className="d-block w-100"
-                src={establishment.images[1].url}
-                alt="Third slide"
-              />
-            </Carousel.Item>
-            <Carousel.Item>
-              <Image
-                className="d-block w-100"
-                src={establishment.images[2].url}
-                alt="Third slide"
-              />
-            </Carousel.Item>
+            {images.map(image => 
+              <Carousel.Item key={image.id}>
+                <Image 
+                  className="d-block w-100" 
+                  src={image.url} 
+                  alt="">
+                </Image>
+                </Carousel.Item>
+            )} 
           </Carousel>
             </Col>
             <Col className="description" s={12} md={6}>
                 <h2>{establishment.name}</h2>
                 <p>{establishment.description}</p>
-                <p className="price">NOK {establishment.price} per night</p>
+                <div className="price-location">
+                  <p className="location">Location: {establishment.address} </p>
+                  <p className="price">NOK {establishment.price} per night</p>
+                </div>
                 <Link href="/enquiry/[name]" as={`/enquiry/${establishment.name}`}><Button className="button">BOOK NOW</Button></Link>
             </Col>
           </Row>
+
+          <Container className="establishment-details">
+            <Row>
+       <SimpleMap />
+            </Row>
+          </Container>
 
           <style jsx global>{`
 
             .establishment {
               margin-top: 5%;
               height: auto;
-              margin-bottom: 10rem;
+              margin-bottom: 5%;
               color: black;
             }
 
@@ -69,6 +73,7 @@ export default function Establishment({establishment}) {
               display: flex;
               flex-direction: column;
               justify-content: space-evenly;
+              
 
             }
 
@@ -76,10 +81,12 @@ export default function Establishment({establishment}) {
                 max-height: 350px;
               }
 
-              .price {
-                text-align: right;
-                font-weight: bold;
+              .price-location {
+                display: flex;
+                justify-content: space-between;
               }
+
+             
 
             .button {
               background: none;
@@ -90,6 +97,13 @@ export default function Establishment({establishment}) {
             .button:hover {
               background: black;
               color: white;
+            }
+
+            .establishment-details {
+              height: 50vh;
+            
+             
+              
             }
     
           `}  
