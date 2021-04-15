@@ -9,7 +9,6 @@ export default function EstablishmentsPage({establishments}) {
     return (
 		<div className="establishments">
 			{establishments.map(establishment => (	
-
 				<Link href="/establishments/[name]" as={`/establishments/${establishment.name}`} key={establishment.id}>
 					<Container className="establishment-container" >
 						<Row className="establishment-specific">
@@ -31,10 +30,6 @@ export default function EstablishmentsPage({establishments}) {
 				
 				{`
 					.establishment-container {
-						
-						
-						font-family: 'Roboto', sans-serif;
-						font-weight: 300;
 						margin-top: 5rem;
 						transition: .5s;
 						margin-bottom: 100px;
@@ -67,10 +62,6 @@ export default function EstablishmentsPage({establishments}) {
 					img {
 						border-radius: 10px;
 					}
-
-
-			
-					@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
         	`}
 			</style>
 		</div>
