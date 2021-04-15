@@ -4,14 +4,16 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
-import { BASE_URL } from '../../constants/api';
 import Carousel from 'react-bootstrap/Carousel'
-import Link from 'next/link'
-import SimpleMap from '../../components/establishments/maps/SimpleMap'
+import { BASE_URL } from './../../../constants/api';
+import SimpleMap from "../../../components/establishments/maps/SimpleMap"
+import ImageUpload from './../../../components/admin/establishment/ImageUpload';
+import { Form } from 'react-bootstrap'
+import EditEstablishment from './../../../components/admin/establishment/EditEstablishment';
 
 export default function Establishment({establishment}) {
   const images = establishment.images;
-  const promoteImage = establishment.promoteImage.url || "Loading"; 
+  const promoteImage = establishment.promoteImage.url
 
   return (
     <Container className="establishment">
@@ -43,25 +45,34 @@ export default function Establishment({establishment}) {
             </Col>
           </Row>
           </Container>
-
           <Container className="details-container">
             <Row className="details">
               <Col>
-              
               <p>{establishment.description}</p>
               <div className="price-location">
                 <p className="price">NOK {establishment.price} per night</p>
                 <p className="location">Location: {establishment.address} </p>
               </div>
-         
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <Link href="/enquiry/[name]" as={`/enquiry/${establishment.name}`}><Button className="button">BOOK NOW</Button></Link>
-              </Col>
-            </Row>
+          <Col>     
+            <h2>Add more images to the establishment</h2>
+            <ImageUpload {...establishment} />
+        </Col>
+
+        <Col className="mt-5">
+            <h2>Edit/Update {establishment.name}</h2>
+            <form>
+                <label>Name</label>
+                <input name="name" value={establishment.name} />
+            </form>
+          
+        </Col>
+           
       
+
+
+
           </Container>
      
 

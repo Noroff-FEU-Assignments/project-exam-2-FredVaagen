@@ -5,12 +5,9 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import { BASE_URL } from '../../constants/api'
-import FileUpload from './../../components/admin/establishment/FieldUpload';
-import ImageUpload from '../../components/admin/establishment/ImageUpload'
+import Link from "next/link";
 
-const Admin = ({enquiries, contacts, establishments, formData}) => {
-console.log(formData)
-
+const Admin = ({enquiries, contacts}) => {
 	return (
 		<Container fluid className="p-0">
 			<Tabs defaultActiveKey="enquiries" >
@@ -30,7 +27,6 @@ console.log(formData)
 					</Container>
 					))}
 				</Tab>
-
 				<Tab eventKey="contact" title="Contact">
 				<Container>	<h1>Contact messages</h1></Container>
 					{contacts.map(contact => (
@@ -48,9 +44,7 @@ console.log(formData)
 
 				<Tab eventKey="createEstablishment" title="Create new establishment">
 					<Container>
-						<h1>Create new establishment</h1>
-						<FileUpload  />
-						<ImageUpload {...establishments} />
+						<Link href="/admin/createEstablishment"><button>Create new establishment</button></Link>
 					</Container>
 				</Tab>
 			</Tabs>
@@ -59,8 +53,7 @@ console.log(formData)
 				.main {
 					height: auto;
 					min-height: 100vh;
-				}
-					
+				}	
 				.nav-tabs {
 					color: white; 
 					background: black;
@@ -70,12 +63,9 @@ console.log(formData)
 				}
 			`}
 		</style>
-
 		</Container>
-
 	);
   };
-
   export async function getServerSideProps(ctx) {
     const token = parseCookies(ctx).token
     const [enquiriesRes, contactsRes, establishmentsRes] = await Promise.all([

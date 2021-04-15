@@ -4,12 +4,11 @@ import axios from "axios";
 import { parseCookies  } from 'nookies'
 import Container from 'react-bootstrap/Container'
 import { BASE_URL } from './../../../constants/api';
-const FileUpload = () => {
+
+const EditEstablishment = (establishment) => {
   const { register, handleSubmit } = useForm();
   const submitData = async (data,ctx) => {
     const token = parseCookies(ctx).token
-
-
     try {
       const formDataToSend = {
         name: data.name,
@@ -21,8 +20,8 @@ const FileUpload = () => {
       };
 
         const inputValue = await axios({
-        url: `${BASE_URL}/establishments`,
-        method: "POST",
+        url: `${BASE_URL}/establishments/${establishment.name}`,
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -48,8 +47,6 @@ const FileUpload = () => {
     }
 
   };
-
-
 
   return (
     <Container>
@@ -86,4 +83,4 @@ const FileUpload = () => {
   );
 };
 
-export default FileUpload;
+export default EditEstablishment;

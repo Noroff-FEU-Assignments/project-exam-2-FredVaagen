@@ -1,14 +1,18 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 import axios from "axios";
 import { parseCookies  } from 'nookies'
 import Container from 'react-bootstrap/Container'
-import { BASE_URL } from './../../../constants/api';
-const FileUpload = () => {
+import { BASE_URL } from '../../../constants/api';
+
+function createEstablishment()  {
   const { register, handleSubmit } = useForm();
+  const router = useRouter();
+
   const submitData = async (data,ctx) => {
     const token = parseCookies(ctx).token
-
+    router.push({ pathname: `/admin/createEstablishment/${data.name}`})
 
     try {
       const formDataToSend = {
@@ -30,30 +34,29 @@ const FileUpload = () => {
         data: formDataToSend
       });
 
+
       const id = inputValue.data.id; 
       const formData = new FormData();
       formData.append("files", data.file[0]);
       formData.append("ref", "establishments"); //name of content type
       formData.append("refId", id); //id of content type
       formData.append("field", "promoteImage");
+      
       const res = await axios({
         method: "POST",
         url: "http://localhost:1337/upload",
         data: formData
-   
       });
       console.log("Success", res);
     } catch (error) {
       console.log(error);
     }
-
   };
-
-
 
   return (
     <Container>
-    <div className="create-establishment">
+    <div className="create-establishment mt-5 mb-5">
+        <h1>Create new establishment</h1>
       <form onSubmit={handleSubmit(submitData)}>
         <div><label>Name</label><input type="text" {...register("name")} /></div>
         <div><label>Description</label><textarea type="text" {...register("description")} /></div>
@@ -86,4 +89,5 @@ const FileUpload = () => {
   );
 };
 
-export default FileUpload;
+export default createEstablishment;
+

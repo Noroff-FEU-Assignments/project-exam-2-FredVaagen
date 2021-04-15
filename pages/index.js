@@ -5,9 +5,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Container from 'react-bootstrap/Container'
-
 import { BASE_URL } from './../constants/api';
-import Something from '../components/home/Something';
+
 
 export default function Home ({establishments}) {
 
@@ -127,9 +126,7 @@ export default function Home ({establishments}) {
   `}
       </style>
       </Container>   
-      <Container>
-          <Something />
-        </Container> 
+ 
       </> 
 
         
