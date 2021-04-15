@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import React, { useState, useEffect} from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";

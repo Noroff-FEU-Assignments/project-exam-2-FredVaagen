@@ -4,6 +4,8 @@ import Marker from './Marker';
 import { GOOGLE_API } from '../../../constants/api';
 
 const SimpleMap = (props) => {
+    const longitude = props.lng; 
+    const latitude = props.lat
     
     const getMapOptions = (maps) => {
         return {
@@ -14,11 +16,11 @@ const SimpleMap = (props) => {
         };
       };
     
-    const [center, setCenter] = useState({lat: 60.18004643833827, lng: 5.456975820218523 });
+    const [center, setCenter] = useState({lat: latitude, lng: longitude });
     const [zoom, setZoom] = useState(15);
     
     return (
-        <div style={{ height: '400px', width: '100%' }}>
+        <div style={{ height: '300px', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: GOOGLE_API }}
           defaultCenter={center}
@@ -26,8 +28,8 @@ const SimpleMap = (props) => {
           options={getMapOptions}
         >
           <Marker
-            lat={60.18004643833827}
-            lng={5.456975820218523}
+            lat={latitude}
+            lng={longitude}
             name="My Marker"
             color="blue"
           />

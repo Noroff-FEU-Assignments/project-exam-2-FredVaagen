@@ -33,7 +33,7 @@ const Layout = (props) => {
              {user ? (
                <Link href="/admin">
                  <a className="mr-3">
-                   
+                   Admin Dashboard
                  </a>
                </Link>
              ) : (

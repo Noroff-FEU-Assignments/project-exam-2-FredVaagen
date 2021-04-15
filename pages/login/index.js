@@ -21,7 +21,8 @@ function Login() {
   
   useEffect(() => {
     if (appContext.isAuthenticated) {
-      router.push("/admin"); // redirect if you're already logged in
+      router.prefetch('/admin')
+
      
     }
   }, []);
