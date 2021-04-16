@@ -54,7 +54,7 @@ export default function Establishment({establishment}) {
               </Col>
             </Row>
           <Col>     
-            <h2>Add more images to the establishment</h2>
+            <h2 className="mt-5">Add detail images</h2>
             <ImageUpload {...establishment} />
         </Col>
         </Container>

@@ -50,12 +50,11 @@ const Admin = ({enquiries, contacts}) => {
 					</Container>
 				</Tab>
 				<Tab eventKey="editEstablishment" title="Edit establishments">
-					<Container>
-
-						<Link href="/admin/editEstablishments">
-							<button>Edit establishments</button>
-						</Link>
+				<Container className="create-establishment">
+						<Row><Col><h2>Edit a establishment</h2></Col></Row>
+						<Link  href="/admin/editEstablishments"><button className="create-establishment-button"><AddCircleIcon /></button></Link>
 					</Container>
+	
 				</Tab>
 			</Tabs>
 			<style global jsx >

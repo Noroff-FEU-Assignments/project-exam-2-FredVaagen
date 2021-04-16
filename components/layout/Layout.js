@@ -75,6 +75,14 @@ const Layout = (props) => {
           
           }
 
+          .main {
+            display: flex;
+            flex-direction: column;
+            flex: 1 0; 
+            height: 100vh;
+           
+          }
+
           .navbar {
             background: black;
             height: 90px;

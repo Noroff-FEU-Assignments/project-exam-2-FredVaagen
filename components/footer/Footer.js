@@ -61,6 +61,9 @@ export default function Footer() {
             border-top: 1px solid #E9E9E9;
             font-size: 12px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            flex: 0 1;
           }
 
           .footer-main h5 {

@@ -15,12 +15,12 @@ const EditEstablishment = (props, ctx) => {
     const token = parseCookies(ctx).token
     try {
     const formDataToSend = {
-      description: data.description, 
-      name: data.name,
-      price: data.price, 
-      lat: data.lat, 
-      lng: data.lng, 
-      address: data.address, 
+      description: data.description || props.description, 
+      name: data.name || props.name,
+      price: data.price || props.price, 
+      lat: data.lat || props.lat, 
+      lng: data.lng || props.lng, 
+      address: data.address ||props.address, 
     };
     console.log(formDataToSend)
 
@@ -34,28 +34,61 @@ const EditEstablishment = (props, ctx) => {
       data: formDataToSend
     });
     console.log("Success", res);
-    router.back()
+
+    if (data.name) {
+      router.replace(`/admin/editEstablishments/${data.name}`)
+    } else router.reload()
+  
+   
+  
   } catch (error) {
     console.log(error);
   }
 };
 
 
+const removeEstablishment = async (ctx) => {
+const token = parseCookies(ctx).token
+
+alert(`Are you sure you want to remove this establishment from Holidaze?`)
+
+try {
+  const res = await axios({
+    method: "DELETE",
+    url: `${BASE_URL}/establishments/${props.id}`,
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+    },
+  });
+  console.log("Success", res);
+
+
+
+} catch (error) {
+  console.log(error);
+}
+router.push("/admin")
+};
+
+
   return (
     <Container>
-            <ImageUpload {...props} />
+    <ImageUpload {...props} />
     <div className="create-establishment">
       <form onSubmit={handleSubmit(submitData)}>
       <div><label>Name</label><input type="text" {...register("name")} /></div>
         <div><label>Description</label><textarea type="text" {...register("description")}  /></div>
         <div><label>Price per night</label><input type="number" {...register("price")} /></div>
-        <div><label>Latitude</label><input {...register("lat")} /></div>
+        <div><label>Latitude <a>https://www.latlong.net/</a></label><input {...register("lat")} /></div>
         <div><label>Longitude</label><input {...register("lng")} /></div>
         <div><label>Address</label><input type="text" {...register("address")}/></div>
         <button type="submit">Create</button>
       </form>
-
     </div>
+
+
+   <form onSubmit={removeEstablishment}><button className="remove" type="submit">Remove establishment</button></form >
 
     <style global jsx >
 			{`
@@ -68,6 +101,19 @@ const EditEstablishment = (props, ctx) => {
   
         .create-establishment button {
           width: 150px;
+        }
+
+        .remove {
+          margin-top: 3rem;
+          background: none;
+          transistion: 1s;
+          border: none;
+        }
+        .remove:hover {
+          background: red;
+          color: white;
+          
+         
         }
 
 			`}

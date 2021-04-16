@@ -37,6 +37,10 @@ const ImageUpload = (props) => {
     </div>
     <style global jsx >
         {`
+      .FileUpload {
+        margin-top: 1rem;
+      }
+
 	    .FileUpload input {
 			  width: 100%;
         margin-top: 1rem;
@@ -44,7 +48,8 @@ const ImageUpload = (props) => {
           
 	    } 
         .FileUpload button  {
-            width: 100%;
+            width: 200px;
+            margin-top: 2rem;
           }
 	    `}       
 		</style>

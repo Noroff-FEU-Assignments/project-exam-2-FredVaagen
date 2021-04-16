@@ -51,6 +51,10 @@ export default function Home ({establishments}) {
    
         <style global jsx>
         {`
+
+          .main {
+            background: black;
+          }
           .home {
             height:80vh;
             background: url('/me.jpg') no-repeat;

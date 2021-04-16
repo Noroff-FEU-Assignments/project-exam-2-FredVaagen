@@ -63,13 +63,18 @@ export default function Establishment({establishment}) {
             </Row>
           </Container>
 
-          <Container>
+          <Container >
             <h2>Update establishment</h2>
               <EditEstablishment {...establishment}/>
           </Container>
      
 
           <style jsx global>{`
+
+              .main {
+                height: auto;
+              }
+
             .establishment {
               margin-top: 5%;
               height: auto;
