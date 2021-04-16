@@ -9,109 +9,18 @@ export default function Footer() {
         <MDBRow>
           <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
             <h5 className='text-uppercase'>ABOUT US</h5>
-            <ul className='list-unstyled mb-0'>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 1
-                </a>
-              </li>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 2
-                </a>
-              </li>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 3
-                </a>
-              </li>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 4
-                </a>
-              </li>
-            </ul>
           </MDBCol>
 
           <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
             <h5 className='text-uppercase mb-0'>ESTABLISHMENTS</h5>
-
-            <ul className='list-unstyled'>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 1
-                </a>
-              </li>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 2
-                </a>
-              </li>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 3
-                </a>
-              </li>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 4
-                </a>
-              </li>
-            </ul>
           </MDBCol>
 
           <MDBCol lg='3' md='6' className='mb-4 mb-md-0 ' >
             <h5 className='text-uppercase'>CONTACT US</h5>
-
-            <ul className='list-unstyled mb-0'>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 1
-                </a>
-              </li>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 2
-                </a>
-              </li>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 3
-                </a>
-              </li>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 4
-                </a>
-              </li>
-            </ul>
           </MDBCol>
 
           <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
             <h5 className='text-uppercase mb-0'>WORK</h5>
-
-            <ul className='list-unstyled'>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 1
-                </a>
-              </li>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 2
-                </a>
-              </li>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 3
-                </a>
-              </li>
-              <li>
-                <a href='#!' className='text-dark'>
-                  Link 4
-                </a>
-              </li>
-            </ul>
           </MDBCol>
         </MDBRow>
       </MDBContainer>
@@ -150,6 +59,13 @@ export default function Footer() {
       <style jsx global>{`
           .footer-main {
             border-top: 1px solid #E9E9E9;
+            font-size: 12px;
+            text-align: center;
+          }
+
+          .footer-main h5 {
+            font-size: 14px;
+          
           }
 
           .bottom-footer {

@@ -61,8 +61,8 @@ function createEstablishment()  {
         <div><label>Name</label><input type="text" {...register("name")} /></div>
         <div><label>Description</label><textarea type="text" {...register("description")} /></div>
         <div><label>Price per night</label><input type="number" {...register("price")} /></div>
-        <div><label>Latitude</label><input type="number" {...register("lat")} /></div>
-        <div><label>Longitude</label><input type="number" {...register("lng")} /></div>
+        <div><label>Latitude</label><input {...register("lat")} /></div>
+        <div><label>Longitude</label><input {...register("lng")} /></div>
         <div><label>Address</label><input type="text" {...register("address")} /></div>
         <div><label>Upload establishment promo/thumbnail image (Maximum of 1)</label><input type="file" {...register("file")} /></div>
         <button>Create</button>

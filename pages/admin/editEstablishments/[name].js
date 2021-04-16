@@ -1,13 +1,14 @@
+import Link from 'next/link'
 import fetch from 'isomorphic-fetch'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import Carousel from 'react-bootstrap/Carousel'
+import SimpleMap from '../../../components/establishments/maps/SimpleMap'
 import { BASE_URL } from './../../../constants/api';
-import SimpleMap from "../../../components/establishments/maps/SimpleMap"
-import ImageUpload from './../../../components/admin/establishment/ImageUpload';
-
+import EditEstablishment from '../../../components/admin/establishment/EditEstablishment'
 
 export default function Establishment({establishment}) {
   const images = establishment.images;
@@ -43,6 +44,8 @@ export default function Establishment({establishment}) {
             </Col>
           </Row>
           </Container>
+
+
           <Container className="details-container">
             <Row className="details">
               <Col>
@@ -53,11 +56,19 @@ export default function Establishment({establishment}) {
               </div>
               </Col>
             </Row>
-          <Col>     
-            <h2>Add more images to the establishment</h2>
-            <ImageUpload {...establishment} />
-        </Col>
-        </Container>
+            <Row>
+              <Col>
+                <Link href="/enquiry/[name]" as={`/enquiry/${establishment.name}`}><Button className="button">BOOK NOW</Button></Link>
+              </Col>
+            </Row>
+          </Container>
+
+          <Container>
+            <h2>Update establishment</h2>
+              <EditEstablishment {...establishment}/>
+          </Container>
+     
+
           <style jsx global>{`
             .establishment {
               margin-top: 5%;
@@ -94,6 +105,13 @@ export default function Establishment({establishment}) {
               background: black;
               color: white;
             }
+
+            .form input {
+              display: block;
+              margin-top: 20px;
+            }
+
+
           `}
         </style>
 

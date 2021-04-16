@@ -5,8 +5,8 @@ import Container from 'react-bootstrap/Container'
 
 const ImageUpload = (props) => {
   const id = props.id
-  
   const { register, handleSubmit } = useForm();
+  
   const submitData = async (data) => {
       const formData = new FormData();
       formData.append("files", data.file[0]);
@@ -28,10 +28,6 @@ const ImageUpload = (props) => {
 
   return (
     <Container>
-
-      <div>
-        
-      </div>
     <div className="FileUpload">
       <form onSubmit={handleSubmit(submitData)}>
         <div><input hidden type="text" {...register("name")} /></div>

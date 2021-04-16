@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import { BASE_URL } from '../../constants/api'
 import Link from "next/link";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { AddCircle } from '@material-ui/icons'
 
 const Admin = ({enquiries, contacts}) => {
 	return (
@@ -40,11 +42,19 @@ const Admin = ({enquiries, contacts}) => {
 						</Row>
 				</Container>
 					))}	
-				</Tab>
-
+				</Tab>				
 				<Tab eventKey="createEstablishment" title="Create new establishment">
+					<Container className="create-establishment">
+						<Row><Col><h2>Create establishment</h2></Col></Row>
+						<Link href="/admin/createEstablishment"><button className="create-establishment-button"><AddCircleIcon /></button></Link>
+					</Container>
+				</Tab>
+				<Tab eventKey="editEstablishment" title="Edit establishments">
 					<Container>
-						<Link href="/admin/createEstablishment"><button>Create new establishment</button></Link>
+
+						<Link href="/admin/editEstablishments">
+							<button>Edit establishments</button>
+						</Link>
 					</Container>
 				</Tab>
 			</Tabs>
@@ -61,6 +71,28 @@ const Admin = ({enquiries, contacts}) => {
 					justify-content: space-evenly;
 					margin-bottom: 5rem;
 				}
+
+				.create-establishment{
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					text-align: center;
+				}
+
+				.create-establishment-button {
+					background: none;
+					border: none;
+				}
+
+				.MuiSvgIcon-root {
+					font-size: 10rem !important;
+					transisition: .3s;
+				}
+
+				.MuiSvgIcon-root:hover {
+					transform: scale(1.1);
+				}
+				
 			`}
 		</style>
 		</Container>

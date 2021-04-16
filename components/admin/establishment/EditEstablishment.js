@@ -1,68 +1,61 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { parseCookies  } from 'nookies'
 import Container from 'react-bootstrap/Container'
 import { BASE_URL } from './../../../constants/api';
+import axios from "axios";
+import ImageUpload from "./ImageUpload";
+import { useRouter } from "next/router";
 
-const EditEstablishment = (establishment) => {
+const EditEstablishment = (props, ctx) => {
   const { register, handleSubmit } = useForm();
-  const submitData = async (data,ctx) => {
+  const router = useRouter();
+ 
+  const submitData = async (data) => {
     const token = parseCookies(ctx).token
     try {
-      const formDataToSend = {
-        name: data.name,
-        description: data.description, 
-        price: data.price, 
-        lat: data.lat, 
-        lng: data.lng, 
-        address: data.address, 
-      };
+    const formDataToSend = {
+      description: data.description, 
+      name: data.name,
+      price: data.price, 
+      lat: data.lat, 
+      lng: data.lng, 
+      address: data.address, 
+    };
+    console.log(formDataToSend)
 
-        const inputValue = await axios({
-        url: `${BASE_URL}/establishments/${establishment.name}`,
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-        },
-        data: formDataToSend
-      });
+    const res = await axios({
+      method: "PUT",
+      url: `${BASE_URL}/establishments/${props.id}`,
+      headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+      },
+      data: formDataToSend
+    });
+    console.log("Success", res);
+    router.back()
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-      const id = inputValue.data.id; 
-      const formData = new FormData();
-      formData.append("files", data.file[0]);
-      formData.append("ref", "establishments"); //name of content type
-      formData.append("refId", id); //id of content type
-      formData.append("field", "promoteImage");
-      const res = await axios({
-        method: "POST",
-        url: "http://localhost:1337/upload",
-        data: formData
-   
-      });
-      console.log("Success", res);
-    } catch (error) {
-      console.log(error);
-    }
-
-  };
 
   return (
     <Container>
+            <ImageUpload {...props} />
     <div className="create-establishment">
       <form onSubmit={handleSubmit(submitData)}>
-        <div><label>Name</label><input type="text" {...register("name")} /></div>
-        <div><label>Description</label><textarea type="text" {...register("description")} /></div>
+      <div><label>Name</label><input type="text" {...register("name")} /></div>
+        <div><label>Description</label><textarea type="text" {...register("description")}  /></div>
         <div><label>Price per night</label><input type="number" {...register("price")} /></div>
-        <div><label>Latitude</label><input type="number" {...register("lat")} /></div>
-        <div><label>Longitude</label><input type="number" {...register("lng")} /></div>
-        <div><label>Address</label><input type="text" {...register("address")} /></div>
-        <div><label>Upload establishment promo/thumbnail image (Maximum of 1)</label><input type="file" {...register("file")} /></div>
-        <button>Create</button>
+        <div><label>Latitude</label><input {...register("lat")} /></div>
+        <div><label>Longitude</label><input {...register("lng")} /></div>
+        <div><label>Address</label><input type="text" {...register("address")}/></div>
+        <button type="submit">Create</button>
       </form>
-    </div>
 
+    </div>
 
     <style global jsx >
 			{`
@@ -81,6 +74,6 @@ const EditEstablishment = (establishment) => {
 		</style>
     </Container>
   );
-};
+}
 
 export default EditEstablishment;

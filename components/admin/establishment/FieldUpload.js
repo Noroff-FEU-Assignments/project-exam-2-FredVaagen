@@ -21,13 +21,13 @@ const FileUpload = () => {
       };
 
         const inputValue = await axios({
-        url: `${BASE_URL}/establishments`,
-        method: "POST",
+        url: `${BASE_URL}/establishments/${props.name}`,
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
         },
-        data: formDataToSend
+        data: JSON.stringify(formDataToSend)
       });
 
       const id = inputValue.data.id; 

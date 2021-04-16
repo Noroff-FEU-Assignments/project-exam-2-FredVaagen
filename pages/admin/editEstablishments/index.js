@@ -2,14 +2,16 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import Link from 'next/link'
-import { BASE_URL } from './../../constants/api';
+import { BASE_URL } from './../../../constants/api';
 import Image from 'next/image'
+
 
 export default function EstablishmentsPage({establishments}) {
     return (
 		<div className="establishments">
+			<Container className="mt-5 mb-5"><h2>Click on a establishment to edit</h2></Container>
 			{establishments.map(establishment => (	
-				<Link href="/establishments/[name]" as={`/establishments/${establishment.name}`} key={establishment.id}>
+				<Link href="/admin/editEstablishments/[name]" as={`/admin/editEstablishments/${establishment.name}`} key={establishment.id}>
 					<Container className="establishment-container" >
 						<Row className="establishment-specific">
 							<Col xs={12} md={3}>
@@ -19,7 +21,6 @@ export default function EstablishmentsPage({establishments}) {
 								<h3>{ establishment.name }</h3>
 								<p>{establishment.description}</p>
 								<p className="price">NOK {establishment.price},- per night </p>
-
 							</Col>
 						</Row>
 					</Container>
@@ -33,13 +34,11 @@ export default function EstablishmentsPage({establishments}) {
 						margin-top: 5rem;
 						transition: .5s;
 						margin-bottom: 100px;
-						border-radius: 50px;
 					}
 
 					.establishment-container:hover  {
-						transform: scale(1.01);
+						transform: scale(1.03);
 						cursor: pointer;
-						background: #fafafa;
 					}
 
 					.establishment-specific {
@@ -71,7 +70,7 @@ export default function EstablishmentsPage({establishments}) {
 }
 
 export async function getStaticProps() {
-	const res = await fetch(`${BASE_URL}/establishments?_sort=name:asc`);
+	const res = await fetch(`${BASE_URL}/establishments`);
 	const resPrice = await fetch(`${BASE_URL}/establishments?_sort=price:asc`);
 	const establishments = await res.json();
 	return {
