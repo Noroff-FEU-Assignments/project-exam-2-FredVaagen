@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
