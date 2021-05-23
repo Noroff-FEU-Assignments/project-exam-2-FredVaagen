@@ -21,8 +21,7 @@ function DesktopNavigation() {
     <Container fluid>
       <Navbar>
         <Navbar.Brand href="/">
-          <FilterHdrIcon />
-          Holidaze
+         <Image src="/logo.svg" height="30px" width="60px"/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
